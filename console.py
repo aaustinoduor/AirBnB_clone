@@ -6,7 +6,7 @@ import cmd
 import sys
 
 
-class Airbnb_console(cmd.Cmd):
+class HBNBCommand(cmd.Cmd):
     """Creates a command processor instance object."""
     prompt = '(hbnb)'
 
@@ -38,4 +38,4 @@ class Airbnb_console(cmd.Cmd):
 
 
 if __name__ == '__main__':
-    Airbnb_console().cmdloop()
+    HBNBCommand().cmdloop()
