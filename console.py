@@ -11,30 +11,31 @@ class Airbnb_console(cmd.Cmd):
     prompt = '(hbnb)'
 
     def do_help(self, arg):
-         """Get help on commands"""
-         if arg:
-              super().do_help(arg)
-         else:
-              self.stdout.write('\n')
-              super().do_help(arg)
-    
+        """Get help on commands"""
+        if arg:
+            super().do_help(arg)
+        else:
+            self.stdout.write('\n')
+            super().do_help(arg)
+
     def do_quit(self, line):
-         """quits the interpreter"""
-         return sys.exit
-    
+        """quits the interpreter"""
+        return sys.exit
+
     def postloop(self):
-         """Checks if the input is from terminal or not"""
-         if not sys.stdin.isatty():
-              print()
-         return 
-    
+        """Checks if the input is from terminal or not"""
+        if not sys.stdin.isatty():
+            print()
+            return
+
     def emptyline(self):
-         """Handles empty lines"""
-         return
-    
+        """Handles empty lines"""
+        return
+
     def do_EOF(self, line):
         """Waits for EOF signal"""
         return True
 
+
 if __name__ == '__main__':
-        Airbnb_console().cmdloop()
+    Airbnb_console().cmdloop()
