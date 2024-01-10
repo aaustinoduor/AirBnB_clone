@@ -24,7 +24,7 @@ class TestBaseModel(unittest.TestCase):
     def test_Instanciation_with_kwargs(self):
         """Test obj instanciation with kwargs key values"""
         my_dict = self.obj1.to_dict()
-        obj3 = BaseModel(**my_dict) #unpacking operator
+        obj3 = BaseModel(**my_dict)  # unpacking operator
         self.assertIsInstance(obj3.id, str)
         self.assertIsInstance(obj3.created_at, datetime)
         self.assertIsInstance(obj3.updated_at, datetime)
