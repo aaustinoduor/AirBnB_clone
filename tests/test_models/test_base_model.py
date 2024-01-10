@@ -1,7 +1,7 @@
-"""Tests the Base class BaseModel and it functionalities"""
-from models.base_model import BaseModel
 import unittest
 from datetime import datetime
+
+from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
@@ -20,6 +20,14 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsNotNone(self.obj2)
         self.assertIsInstance(self.obj1, BaseModel)
         self.assertIsInstance(self.obj2, BaseModel)
+
+    def test_Instanciation_with_kwargs(self):
+        """Test obj instanciation with kwargs key values"""
+        my_dict = self.obj1.to_dict()
+        obj3 = BaseModel(**my_dict) #unpacking operator
+        self.assertIsInstance(obj3.id, str)
+        self.assertIsInstance(obj3.created_at, datetime)
+        self.assertIsInstance(obj3.updated_at, datetime)
 
     def test_id(self):
         """Test unique id creation"""
@@ -52,13 +60,14 @@ class TestBaseModel(unittest.TestCase):
 
     def test_to_dict(self):
         """Test whether all instance key values are present
-         and in the right format"""
+        and in the right format"""
         my_dict = self.obj2.to_dict()
 
+        self.assertIsInstance(my_dict, dict)
         self.assertIsNotNone(my_dict)
-        self.assertIn('__class__', my_dict)
-        self.assertIsInstance(my_dict['created_at'], str)
-        self.assertIsInstance(my_dict['updated_at'], str)
+        self.assertIn("__class__", my_dict)
+        self.assertIsInstance(my_dict["created_at"], str)
+        self.assertIsInstance(my_dict["updated_at"], str)
 
 
 if __name__ == "__main__":

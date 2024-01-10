@@ -6,14 +6,35 @@ from datetime import datetime
 from uuid import uuid4
 
 
-class BaseModel():
+class BaseModel:
     """Creates an instance of base Model"""
 
-    def __init__(self):
-        """Instanciates the object"""
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+    def __init__(self, **kwargs):
+        """Instanciates the object with dict from kwargs if not empty
+        else define values
+        """
+        if kwargs:
+            for key, value in kwargs.items():
+                if key != '__class__':
+                    formatted_value = self.format_value(key, value)
+                    # makes the code more robust
+                    setattr(self, key, formatted_value)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+
+    def format_value(self, key, value):
+        """formats the value depending on expected type
+        before setting them if kwargs is not none
+        """
+        if key in ['created_at', 'updated_at']:
+            # dateutils for older python versions
+            return datetime.fromisoformat(value)
+        elif key == 'id':
+            return str(value)  # not neccessary just a precaution
+        else:
+            return value
 
     def __str__(self):
         """Prints a user friendly output"""
