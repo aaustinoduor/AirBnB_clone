@@ -10,7 +10,7 @@ class TestBaseModel(unittest.TestCase):
     """
 
     def setUp(self):
-        """Insatnciated objects to be used by the tests"""
+        """Instanciated objects to be used by the tests"""
         self.obj1 = BaseModel()
         self.obj2 = BaseModel()
 
