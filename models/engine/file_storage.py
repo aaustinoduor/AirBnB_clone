@@ -3,10 +3,9 @@ and  deserializes JSON file to instances
 """
 import json
 from pathlib import Path
-from models.base_model import BaseModel
 
 
-class FileStorage(BaseModel):
+class FileStorage:
     """Creates a File storage instance"""
     __file_path = Path('~/Dev/Alx/Airbnb/AirBnB_clone/file.json')
     __objects = {}
