@@ -12,8 +12,7 @@ class FileStorage:
 
     def all(self):
         """Returns a dictionary"""
-        self.__objects = __class__.__objects
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         """Sets the __objects dict with a key <obj class name>.id"""
