@@ -14,6 +14,11 @@ class TestBaseModel(unittest.TestCase):
         self.obj1 = BaseModel()
         self.obj2 = BaseModel()
 
+    def tearDown(self):
+        """Releases the obj references"""
+        self.obj1 = None
+        self.obj2 = None
+
     def test_Instanciation(self):
         """Test objects are Not null on Instanciation"""
         self.assertIsNotNone(self.obj1)
