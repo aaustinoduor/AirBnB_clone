@@ -6,8 +6,14 @@ from pathlib import Path
 
 
 class FileStorage:
-    """Creates a File storage instance"""
-    __file_path = Path('~/Dev/Alx/Airbnb/AirBnB_clone/file.json')
+    """Creates a File storage instance
+
+    Attributes:
+        __file_path (str): path to the file to save objects to
+        __object (dict): A dictionary of objects
+    """
+
+    __file_path = Path('~/Dev/Alx/Airbnb/AirBnB_clone/')
     __objects = {}
 
     def all(self):
@@ -24,14 +30,14 @@ class FileStorage:
         else:
             raise KeyError()
 
-    def save(self):
-        """Serializes a python object to json"""
-        with open(FileStorage.__file_path, 'a+') as file:
-            file.seek(0)  # allows for reading of the file
-            json.dump(FileStorage.__objects, file)
+    # def save(self):
+    #     """Serializes a python object to json"""
+    #     with open(FileStorage.__file_path, 'a+') as file:
+    #         file.seek(0)  # allows for reading of the file
+    #         json.dump(FileStorage.__objects, file)
 
-    def reload(self):
-        """Deserializes json to python obj in __objects"""
-        if FileStorage.__file_path.exists():
-            with open(FileStorage.__file_path, 'r') as file:
-                FileStorage.new(json.load(file))
+    # def reload(self):
+    #     """Deserializes json to python obj in __objects"""
+    #     if FileStorage.__file_path.exists():
+    #         with open(FileStorage.__file_path, 'r') as file:
+    #             FileStorage.new(json.load(file))
