@@ -4,7 +4,7 @@
 
 from datetime import datetime
 from uuid import uuid4
-import models
+from models import storage
 
 
 class BaseModel:
@@ -24,6 +24,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            storage.new(self)
 
     def format_value(self, key, value):
         """formats the value depending on expected type
@@ -43,10 +44,11 @@ class BaseModel:
 
     def save(self):
         """Updates the instance variable updated_at
-        with the current datetime
+        with the current datetime and saves s json string
+        to file storage
         """
         self.updated_at = datetime.now()
-        models.storage.save()
+        storage.save()
 
     def to_dict(self):
         """Returns a dictionary containing all keys/values of
