@@ -2,7 +2,7 @@
 and  deserializes JSON file to instances
 """
 import json
-from pathlib import Path
+import os
 
 
 class FileStorage:
@@ -13,7 +13,7 @@ class FileStorage:
         __object (dict): A dictionary of objects
     """
 
-    __file_path = Path('~/Dev/Alx/Airbnb/AirBnB_clone/')
+    __file_path = 'file.json'
     __objects = {}
 
     def all(self):
@@ -30,14 +30,24 @@ class FileStorage:
         else:
             raise KeyError()
 
-    # def save(self):
-    #     """Serializes a python object to json"""
-    #     with open(FileStorage.__file_path, 'a+') as file:
-    #         file.seek(0)  # allows for reading of the file
-    #         json.dump(FileStorage.__objects, file)
+    def save(self):
+        """Serializes a python object to json"""
 
-    # def reload(self):
-    #     """Deserializes json to python obj in __objects"""
-    #     if FileStorage.__file_path.exists():
-    #         with open(FileStorage.__file_path, 'r') as file:
-    #             FileStorage.new(json.load(file))
+        if os.path.exists(FileStorage.__file_path):
+            mode = 'a'
+        else:
+            mode = 'w'  # point of failure for multiple objects
+
+        with open(FileStorage.__file_path, mode) as file:
+            # file.seek(0)  # allows for reading of the file
+            json.dump(FileStorage.__objects, file)
+            file.write('\n')
+
+    def reload(self):
+        """Deserializes json to python obj and adds it to __objects"""
+        if os.path.exists(FileStorage.__file_path):
+            with open(FileStorage.__file_path, 'r') as file:
+                obj = json.load(file)
+                for my_dict in obj.values():
+                    new_obj = dict(my_dict)
+                self.new(new_obj)
