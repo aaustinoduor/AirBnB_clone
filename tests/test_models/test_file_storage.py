@@ -60,7 +60,9 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsNotNone(self.obj2.all())
 
     def test_new_method_with_valid_object(self):
-        """Ascertains the method new, adds valid objects to the private class attribute"""
+        """Ascertains the method new,
+        adds valid objects to the private class attribute
+        """
         my_obj1 = BaseModel().to_dict()
         my_obj2 = BaseModel().to_dict()
         self.assertIsInstance(my_obj1, dict)
