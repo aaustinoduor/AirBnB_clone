@@ -4,6 +4,7 @@ For development and Debugging purposes
 """
 import cmd
 import sys
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -14,13 +15,26 @@ class HBNBCommand(cmd.Cmd):
         """Get help on commands"""
         if arg:
             super().do_help(arg)
+            self.stdout.write('\n')
         else:
             self.stdout.write('\n')
             super().do_help(arg)
 
-    def do_quit(self, line):
+    def do_quit(self, arg):
         """quits the interpreter"""
         return sys.exit
+
+    def do_EOF(self, arg):
+        """Waits for EOF signal"""
+        return True
+
+    def do_create(self, arg):
+        """Creates a BaseModel instance saves it to json
+        and prints the id
+        """
+        my_obj = BaseModel()
+        my_obj.save()  # Save to storage does not work
+        print(my_obj.to_dict().get('id'))
 
     def postloop(self):
         """Checks if the input is from terminal or not"""
@@ -31,10 +45,6 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """Handles empty lines"""
         return
-
-    def do_EOF(self, line):
-        """Waits for EOF signal"""
-        return True
 
 
 if __name__ == '__main__':
