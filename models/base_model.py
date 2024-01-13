@@ -4,15 +4,19 @@
 
 from datetime import datetime
 from uuid import uuid4
-from models import storage
+# from models import storage
 
 
 class BaseModel:
     """Creates an instance of base Model"""
 
-    def __init__(self, **kwargs):
+    def __init__(self, *args, **kwargs):
         """Instanciates the object with dict from kwargs if not empty
         else define values
+
+        Args:
+            *args(any): Not used
+            **kwargs(dict): key value pairs
         """
         if kwargs:
             for key, value in kwargs.items():
@@ -24,7 +28,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
+            # storage.new(self)
 
     def format_value(self, key, value):
         """formats the value depending on expected type
@@ -48,7 +52,7 @@ class BaseModel:
         to file storage
         """
         self.updated_at = datetime.now()
-        storage.save()
+        # storage.save()
 
     def to_dict(self):
         """Returns a dictionary containing all keys/values of
