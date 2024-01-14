@@ -38,3 +38,10 @@ This is the console version ofthe AirBnB Clone project
     destroy BaseModel [model_id]
 
 ```
+
+## 3.0 How to test
+
+```bash
+    python3 -m unittest discover tests
+
+```
