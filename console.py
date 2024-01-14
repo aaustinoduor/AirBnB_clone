@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Acts as the main entry point for the backend
-For development and Debugging purposes
+   For development and Debugging purposes
 """
 import cmd
 import sys
